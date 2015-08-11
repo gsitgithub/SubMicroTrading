@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/OM/test/com/rr/om/session/fixsocket/TstSyncFixServer.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.rr.om.session.fixsocket.TstSyncFixServer"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-r"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="OM"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xcomp -Xconcurrentio -XX:+UseFastAccessorMethods -XX:+UseFastJNIAccessors &#13;&#10;-XX:+UseThreadPriorities &#13;&#10;-XX:CMSInitiatingOccupancyFraction=85 -XX:CMSIncrementalDutyCycleMin=0 -XX:SurvivorRatio=1024 -XX:MaxTenuringThreshold=0 &#13;&#10;-XX:+UseParNewGC -XX:-UseBiasedLocking&#13;&#10;-XX:+UseNUMA"/>
+</launchConfiguration>

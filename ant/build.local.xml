@@ -1,0 +1,104 @@
+<project name="MyProject" default="dist" basedir=".">
+  <description>SMT Build </description>
+
+  <property name="src"   location="src"/>
+  <property name="build" location="build"/>
+  <property name="dist"  location="antdist"/>
+
+  <property name="test.dir" location="src" />
+  <property name="test.report.dir" location="TestReport" />
+
+
+  <path id="build.classpath">
+    <fileset dir="../Core/exlib">
+      <include name="**/*.jar" />
+    </fileset>
+  </path>
+
+  <path id="junit.class.path">
+    <path refid="build.classpath"/>
+    <pathelement location="${build}" />
+  </path>
+
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${build}"/>
+    <mkdir dir="${build}/tmp"/>
+    <delete dir="${test.report.dir}" quiet="true"/>
+    <mkdir dir="${test.report.dir}"/>
+
+    <copy todir="${build}" quiet="true"><fileset dir="../OM" includes="config/**"/></copy>
+    <copy todir="${build}" quiet="true"><fileset dir="../OM" includes="data/**"/></copy>
+
+    <copy todir="${build}" quiet="true"><fileset dir="../CoreStrats" includes="config/**"/></copy>
+    <copy todir="${build}" quiet="true"><fileset dir="../CoreStrats" includes="data/**"/></copy>
+
+    <copy todir="${build}" quiet="true"><fileset dir="../strats" includes="config/**"/></copy>
+    <copy todir="${build}" quiet="true"><fileset dir="../strats" includes="data/**"/></copy>
+  </target>
+
+  <target name="compile" depends="init" description="compile the source " >
+    <javac classpathref="build.classpath" srcdir="../Core/src" source="1.7" target="1.7" debug="true" debuglevel="lines,vars,source" destdir="${build}">
+	<compilerarg value="-XDignore.symbol.file"/>
+    </javac>
+
+    <javac classpathref="build.classpath" srcdir="../Generated/src" destdir="${build}"/>
+    <javac classpathref="build.classpath" srcdir="../Model/src" destdir="${build}"/>
+    <javac classpathref="build.classpath" srcdir="../Generated/model/internal/version/1.0.0/src" destdir="${build}"/>
+    <javac classpathref="build.classpath" srcdir="../Generated/model/fix/version/1.0.0/src" destdir="${build}"/>
+    <javac classpathref="build.classpath" srcdir="../Generated/model/codec-client/version/1.0.0/src" destdir="${build}"/>
+    <javac classpathref="build.classpath" srcdir="../Generated/model/codec-exchange/version/1.0.0/src" destdir="${build}"/>
+    <javac classpathref="build.classpath" srcdir="../Generated/model/codec-base/version/1.0.0/src" destdir="${build}"/>
+    <javac classpathref="build.classpath" srcdir="../Generated/model/codec-binary/version/1.0.0/src" destdir="${build}"/>
+    <javac classpathref="build.classpath" srcdir="../Generated/model/binary/version/1.0.0/src" destdir="${build}"/>
+    <javac classpathref="build.classpath" srcdir="../Generated/model/codec-factory/version/1.0.0/src" destdir="${build}"/>
+
+    <javac classpathref="build.classpath" srcdir="../OM/src" destdir="${build}" source="1.7" target="1.7" debug="true" debuglevel="lines,vars,source"/>
+
+    <javac classpathref="build.classpath" srcdir="../CoreStrats/src" destdir="${build}" source="1.7" target="1.7" debug="true" debuglevel="lines,vars,source"/>
+    <javac classpathref="build.classpath" srcdir="../strats/src" destdir="${build}" source="1.7" target="1.7" debug="true" debuglevel="lines,vars,source"/>
+  </target>
+
+  <target name="compileTest" depends="compile" description="compile the test source">
+    <javac classpathref="build.classpath" srcdir="../Core/test" destdir="${build}" source="1.7" target="1.7" debug="true" debuglevel="lines,vars,source"/>
+    <javac classpathref="build.classpath" srcdir="../OM/test" destdir="${build}" source="1.7" target="1.7" debug="true" debuglevel="lines,vars,source"/>
+    <javac classpathref="build.classpath" srcdir="../CoreStrats/test" destdir="${build}" source="1.7" target="1.7" debug="true" debuglevel="lines,vars,source"/>
+    <javac classpathref="build.classpath" srcdir="../strats/test" destdir="${build}" source="1.7" target="1.7" debug="true" debuglevel="lines,vars,source"/>
+  </target>
+
+  <!-- Run the JUnit Tests -->
+  <!-- Output is XML, could also be plain-->
+  <target name="junit" depends="compileTest">
+    <junit showoutput="no" printsummary="true" fork="true" forkmode="once" haltonfailure="no" dir="${build}">
+      <classpath refid="junit.class.path" />
+      <formatter type="plain" />
+      <batchtest todir="${test.report.dir}">
+        <fileset dir="../Core/test"><include name="**/Test*.java" /></fileset>
+        <fileset dir="../Core/test"><include name="**/*Test.java" /></fileset>
+
+        <fileset dir="../OM/test"><include name="**/*Test.java" /></fileset>
+        <fileset dir="../OM/test"><include name="**/Test*.java" /></fileset>
+
+        <fileset dir="../CoreStrats/test"><include name="**/Test*.java" /></fileset>
+        <fileset dir="../CoreStrats/test"><include name="**/*Test.java" /></fileset>
+
+        <fileset dir="../strats/test"><include name="**/Test*.java" /></fileset>
+        <fileset dir="../strats/test"><include name="**/*Test.java" /></fileset>
+      </batchtest>
+    </junit>
+  </target>
+
+  <target name="dist" depends="compile, compileTest, junit" description="generate the distribution" >
+    <mkdir dir="${dist}/lib"/>
+
+    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+    <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/>
+  </target>
+
+  <target name="clean"
+        description="clean up" >
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
+</project>

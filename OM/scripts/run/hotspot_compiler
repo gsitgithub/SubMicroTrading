@@ -1,0 +1,12 @@
+exclude com/rr/om/warmup/sim/WarmupExchangeSimAdapter handleNewOrderSingle
+exclude com/rr/om/exchange/ExchangeSim  applyNewOrderSingle
+exclude com/rr/om/exchange/ExchangeSim  createOrder
+exclude com/rr/core/instrument/DummyInstrumentLocator getInstrument
+exclude com/rr/core/tasks/TimerThread mainLoop
+exclude com/rr/core/tasks/TaskQueue fixDown
+exclude com/rr/core/tasks/Scheduler$SingleCallbackTask run
+exclude com/rr/om/session/state/SessionController checkMissingHeartbeat
+exclude com/rr/core/log/FileAppender blockWriteToDisk
+exclude sun/nio/ch/FileChannelImpl write
+exclude com/rr/core/log/FileAppender flush
+exclude sun/nio/ch/FileChannelImpl force

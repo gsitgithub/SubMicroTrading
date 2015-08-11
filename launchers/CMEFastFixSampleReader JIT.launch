@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/Core/src/com/rr/core/component/builder/AntiSpringBootstrap.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.rr.core.component.builder.AntiSpringBootstrap"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="10000000 127.0.0.1 0 0 0 1 2 100 10000"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="OM"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-XX:+PrintCompilation -XX:+CITime -verbose:class -XX:+UnlockDiagnosticVMOptions -XX:+PrintInlining -XX:+LogCompilation -server -XX:+TieredCompilation -verbose:gc -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -XX:+BackgroundCompilation -XX:CompileThreshold=1000 -XX:-ClassUnloading -XX:+UseCompilerSafepoints -XX:-UseOnStackReplacement -XX:+UseCounterDecay -Xms1024m -Xmx2048m -XX:+UseParallelGC -XX:PermSize=256M -XX:MaxPermSize=512M -XX:+UseCompressedOops  -Djava.net.preferIPv4Stack=true"/>
+</launchConfiguration>

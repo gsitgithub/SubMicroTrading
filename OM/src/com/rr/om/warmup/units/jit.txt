@@ -1,0 +1,54 @@
+
+Latency from JIT / classLoading / GC / bad pool sizing
+
+RETRY WITH AGRESSIVE COMPILER OPTS ON
+
+alas java.lang.Compiler.disable  ... doesnt work
+
+Zombie methods are methods whose code has been made invalid by class loading. 
+Generally the server compiler makes aggressive inlining decisions of non-final methods. 
+As long as the inlined method is never overridden the code is correct. 
+When a subclass is loaded and the method overridden, the compiled code is broken for all future calls to it. 
+The code gets declared "not entrant" (no future callers to the broken code), but sometimes existing callers can keep using the code. 
+In the case of inlining, that's not good enough; existing callers' stack frames are "deoptimized" when they return to the code from nested calls 
+(or just if they are running in the code). 
+When no more stack frames hold PC's into the broken code it's declared a "zombie" - ready for removal once the GC gets around to it.
+
+Some options 
+-XX:-Inline -XX:+PrintOptoBailouts -XX:+TraceOptoParse -XX:+TraceDeoptimization -XX:CompileThreshold -Xcomp -XX:CompileOnly
+
+.hotspot_compiler file in the current working directory
+• exclude java/lang/String indexOf
+• This would exclude java.lang.String.indexOf from compilation
+
+To trace compilation on a class :-
+-server -Xcomp -XX:CompileOnly=java/net/Socket -XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:LogFile=<server client>log
+
+Disable recompilation   -XX:PerMethodRecompilationCutoff=0
+
+
+
+
+Flags correspond to:
+n native
+b Blocking compiler (always set for client)
+* Generating a native wrapper
+% On stack replacement
+! Method has exception handlers
+s Synchronized method
+
+
+This is current compilation done post warmup and when client connects
+ 
+ 11% !b   com.rr.core.session.SessionThreadedDispatcher$Dispatcher::run @ 35 (200 bytes)
+3995 s!b   com.rr.core.log.FileAppender::close (69 bytes)
+3996   b   java.io.FileDescriptor::valid (14 bytes)
+3997   b   java.io.FileOutputStream::close (19 bytes)
+---   n   java.io.FileOutputStream::close0
+3998 s!b   com.rr.core.log.FileAppender::open (125 bytes)
+3999  !b   com.rr.core.utils.FileUtils::formRollableFileName (98 bytes)
+4000   b   java.io.FileOutputStream::<init> (89 bytes)
+4001  !b   java.io.FileOutputStream::getChannel (41 bytes)
+4002 s!b   com.rr.core.log.FileAppender::close (69 bytes)
+4003   b   com.rr.om.session.fixsocket.FixController::checkMissingHeartbeat (115 bytes)
+ 

@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbe:messageSchema xmlns:sbe="http://www.fixprotocol.org/ns/simple/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" package="MarketData" description="Test dictionary" byteOrder="littleEndian" xsi:schemaLocation="http://www.fixprotocol.org/ns/simple/1.0/SimpleBinary1-0.xsd">
+    <types>
+        <type name="ApplID" length="5" primitiveType="char" fixUsage="char"/>
+        <type name="Asset" length="6" primitiveType="char" fixUsage="char"/>
+        <type name="CFICode" length="6" primitiveType="char" fixUsage="char"/>
+        <type name="LOCAL_MKT_DATE" primitiveType="uint16" fixUsage="LocalMktDate"/>
+        <type name="MDEntryTypeTrade" presence="constant" length="1" primitiveType="char" fixUsage="char">2</type>
+        <type name="MDEntryTypeVol" presence="constant" length="1" primitiveType="char" fixUsage="char">e</type>
+        <type name="MDFeedType" length="3" primitiveType="char" fixUsage="char"/>
+        <type name="MsgType" presence="constant" length="1" primitiveType="char" fixUsage="char">X</type>
+        <type name="MsgTypeInstrument" presence="constant" length="1" primitiveType="char" fixUsage="char">d</type>
+        <type name="MsgTypeQouteRequest" presence="constant" length="1" primitiveType="char" fixUsage="char">R</type>
+        <type name="MsgTypeSnapshot" presence="constant" length="1" primitiveType="char" fixUsage="char">W</type>
+        <type name="MsgTypeStatus" presence="constant" length="1" primitiveType="char" fixUsage="char">f</type>
+        <type name="NUM_IN_GROUP" primitiveType="uint8" fixUsage="NumInGroup"/>
+        <type name="QouteReqId" length="23" primitiveType="char" fixUsage="char"/>
+        <type name="SecurityExchange" length="4" primitiveType="char" fixUsage="char"/>
+        <type name="SecurityGroup" length="6" primitiveType="char" fixUsage="char"/>
+        <type name="SecurityIDSource" presence="constant" length="1" primitiveType="char" fixUsage="char">8</type>
+        <type name="SecuritySubType" length="5" primitiveType="char" fixUsage="char"/>
+        <type name="SecurityType" length="6" primitiveType="char" fixUsage="char"/>
+        <type name="StrikeCurrency" length="3" primitiveType="char" fixUsage="char"/>
+        <type name="Symbol" length="20" primitiveType="char" fixUsage="char"/>
+        <type name="UnderlyingSymbol" length="20" primitiveType="char" fixUsage="char"/>
+        <type name="UnitOfMeasure" length="30" primitiveType="char" fixUsage="char"/>
+        <type name="UserDefinedInstrument" length="1" primitiveType="char" fixUsage="char"/>
+        <type name="char" primitiveType="char"/>
+        <type name="enumNull" nullValue="127" primitiveType="int8"/>
+        <type name="int32" primitiveType="int32"/>
+        <type name="int32NULL" nullValue="2147483647" primitiveType="int32"/>
+        <type name="int8" primitiveType="int8"/>
+        <type name="uInt8" primitiveType="uint8"/>
+        <type name="uint32" primitiveType="uint32"/>
+        <type name="uint64" primitiveType="uint64"/>
+        <composite name="PRICE" fixUsage="Price">
+            <type name="mantissa" primitiveType="int64"/>
+            <type name="exponent" presence="constant" primitiveType="int8">-7</type>
+        </composite>
+        <composite name="PRICENULL" fixUsage="Price">
+            <type name="mantissa" nullValue="9223372036854775807" primitiveType="int64"/>
+            <type name="exponent" presence="constant" primitiveType="int8">-7</type>
+        </composite>
+        <enum name="AggressorSide" encodingType="int8">
+            <validValue name="0" description="No aggressor">0</validValue>
+            <validValue name="1" description="Buy">1</validValue>
+            <validValue name="2" description="Sell">2</validValue>
+        </enum>
+        <enum name="EventType" encodingType="int8">
+            <validValue name="5" description="Activation">5</validValue>
+            <validValue name="7" description="Last Eligible Trade Date">7</validValue>
+        </enum>
+        <enum name="HaltReason" encodingType="int8">
+            <validValue name="0" description="Group schedule">0</validValue>
+            <validValue name="1" description="Surveillance intervention">1</validValue>
+            <validValue name="2" description="Marketevent">2</validValue>
+            <validValue name="3" description="Instrument activation">3</validValue>
+            <validValue name="4" description="Instrument expiration">4</validValue>
+            <validValue name="5" description="Unknown">5</validValue>
+        </enum>
+        <enum name="LegSide" encodingType="char">
+            <validValue name="Buy" description="Buy Side">1</validValue>
+            <validValue name="Sell" description="Sell Side">2</validValue>
+        </enum>
+        <enum name="MDEntryType" encodingType="char">
+            <validValue name="0" description="Bid">48</validValue>
+            <validValue name="1" description="Offer">49</validValue>
+            <validValue name="2" description="Trade">50</validValue>
+            <validValue name="4" description="Opening Price">52</validValue>
+            <validValue name="6" description="Settlement Price">53</validValue>
+            <validValue name="7" description="Trading Session High Price">54</validValue>
+            <validValue name="8" description="Trading Session Low Price">55</validValue>
+            <validValue name="B" description="Trade Volume">66</validValue>
+            <validValue name="C" description="Open Interest">67</validValue>
+            <validValue name="E" description="Implied Bid">69</validValue>
+            <validValue name="F" description="Implied Offer">70</validValue>
+            <validValue name="J" description="Empty Book">74</validValue>
+            <validValue name="N" description="Session High Bid">78</validValue>
+            <validValue name="O" description="Session Low Offer">79</validValue>
+            <validValue name="W" description="Fixing Price">87</validValue>
+            <validValue name="e" description="Event Summary">101</validValue>
+        </enum>
+        <enum name="MDUpdateAction" encodingType="int8">
+            <validValue name="0" description="New">0</validValue>
+            <validValue name="1" description="Change">1</validValue>
+            <validValue name="2" description="Delete">2</validValue>
+            <validValue name="3" description="Delete Thru">3</validValue>
+            <validValue name="4" description="Delete From">4</validValue>
+            <validValue name="5" description="Overlay">5</validValue>
+        </enum>
+        <enum name="MatchAlgorithm" encodingType="char">
+            <validValue name="Allocation" description="Allocation">65</validValue>
+            <validValue name="ProRata" description="ProRata">67</validValue>
+            <validValue name="First in First Out FIFO" description="First in First Out FIFO">70</validValue>
+            <validValue name="Split FIFO ProRata" description="Split FIFO ProRata">75</validValue>
+            <validValue name="Threshold ProRata" description="Threshold ProRata">79</validValue>
+            <validValue name="Threshold ProRata with LMM" description="Threshold ProRata with LMM">81</validValue>
+            <validValue name="FIFO with TOP and LMM" description="FIFO with TOP and LMM">83</validValue>
+            <validValue name="FIFO with LMM" description="FIFO with LMM">84</validValue>
+            <validValue name="Eurodollar Options" description="Eurodollar Options">89</validValue>
+        </enum>
+        <enum name="OpenCloseSettlFlag" encodingType="enumNull">
+            <validValue name="0" description="Daily Final Settlement">0</validValue>
+            <validValue name="5" description="Theoretical Price Value (TOP)">5</validValue>
+            <validValue name="100" description="Rounded Preliminary Price">100</validValue>
+            <validValue name="101" description="Non-Rounded Preliminary Price">101</validValue>
+        </enum>
+        <enum name="QouteType" encodingType="int8">
+            <validValue name="1" description="Tradeable">0</validValue>
+        </enum>
+        <enum name="SecurityTradingEvent" encodingType="int8">
+            <validValue name="0" description="No Event">0</validValue>
+            <validValue name="1" description="No Cancel">1</validValue>
+            <validValue name="2" description="Instrument status must be persisted separate from the group">2</validValue>
+            <validValue name="3" description="Instrument rejoins the group">3</validValue>
+            <validValue name="4" description="Change of Trading session(reset statistics)">4</validValue>
+            <validValue name="5" description="Implied matching ON">5</validValue>
+            <validValue name="6" description="Implied matching OFF">6</validValue>
+        </enum>
+        <enum name="SecurityTradingStatus" encodingType="int8">
+            <validValue name="2" description="Trading halt">2</validValue>
+            <validValue name="4" description="Close">4</validValue>
+            <validValue name="15" description="New Price Indication">15</validValue>
+            <validValue name="17" description="Ready to trade(start of session)">17</validValue>
+            <validValue name="18" description="Not available for trading">18</validValue>
+            <validValue name="20" description="Unknown or Invalid">20</validValue>
+            <validValue name="21" description="Pre Open">21</validValue>
+            <validValue name="26" description="Post Close">26</validValue>
+            <validValue name="103" description="No Change">103</validValue>
+        </enum>
+        <enum name="SecurityUpdateAction" encodingType="char">
+            <validValue name="Add" description="New Instrument (UDS)">65</validValue>
+            <validValue name="Delete" description="Deleted Instrument">68</validValue>
+            <validValue name="Modify" description="Updated Instrument">77</validValue>
+        </enum>
+        <enum name="Side" encodingType="int8">
+            <validValue name="1" description="Buy">1</validValue>
+            <validValue name="2" description="Sell">2</validValue>
+        </enum>
+        <enum name="UnderlyingProdcut" encodingType="int8">
+            <validValue name="Commodity or Agriculture" description="Commodity or Agriculture">2</validValue>
+            <validValue name="Currency" description="Currency">4</validValue>
+            <validValue name="Equity" description="Equity">5</validValue>
+            <validValue name="Other" description="Other">12</validValue>
+            <validValue name="Interest Rate" description="Interest Rate">14</validValue>
+            <validValue name="FX Cash" description="FX Cash">15</validValue>
+            <validValue name="Energy" description="Energy">16</validValue>
+            <validValue name="Metals" description="Metals">17</validValue>
+        </enum>
+        <set name="InstAttribValue" encodingType="uint32">
+            <choice name="Reserved for Future Use" description="Reserved">0</choice>
+            <choice name="Reserved for Future Use" description="Reserved">1</choice>
+            <choice name="Reserved for Future Use" description="Reserved">2</choice>
+            <choice name="Reserved for Future Use" description="Reserved">3</choice>
+            <choice name="Reserved for Future Use" description="Reserved">4</choice>
+            <choice name="Reserved for Future Use" description="Reserved">5</choice>
+            <choice name="Reserved for Future Use" description="Reserved">6</choice>
+            <choice name="Reserved for Future Use" description="Reserved">7</choice>
+            <choice name="Reserved for Future Use" description="Reserved">8</choice>
+            <choice name="Reserved for Future Use" description="Reserved">9</choice>
+            <choice name="Reserved for Future Use" description="Reserved">10</choice>
+            <choice name="Reserved for Future Use" description="Reserved">11</choice>
+            <choice name="Implied Matching Eligibility" description="Implied Matching Eligibility">12</choice>
+            <choice name="GT Orders Eligibility" description="GT Orders Eligibility">13</choice>
+            <choice name="Daily Product Eligibility" description="Daily Product Eligibility">14</choice>
+            <choice name="Variable Product Eligibility" description="Variable Product Eligibility">15</choice>
+            <choice name="Decaying Product Eligibility" description="Decaying Product Eligibility">16</choice>
+            <choice name="Zero Price Outright Eligible" description="Zero Price Outright Eligible">17</choice>
+            <choice name="RFQ Cross Eligible" description="RFQ Cross Eligible">18</choice>
+            <choice name="Volatility Quoted Option" description="Volatility Quoted Option">19</choice>
+            <choice name="Is Fractional" description="indicates product has fractional display price">20</choice>
+            <choice name="Negative Price Outright Eligible" description="Negative Price Outright Eligible">21</choice>
+            <choice name="Negative Strike Eligible" description="Negative Strike Eligible">22</choice>
+            <choice name="iLink Indicative Mass Quoting Eligible" description="iLink Indicative Mass Quoting Eligible">23</choice>
+            <choice name="OTC Eligible" description="OTC Eligible">24</choice>
+            <choice name="EFR Eligible" description="EFR Eligible">25</choice>
+            <choice name="EFS Eligible" description="EFS Eligible">26</choice>
+            <choice name="EBF Eligible" description="EBF Eligible">27</choice>
+            <choice name="EFP Eligible" description="EFP Eligible">28</choice>
+            <choice name="Block Trade Eligible" description="Block Trade Eligible">29</choice>
+            <choice name="Order Cross Eligible" description="Order Cross Eligible">30</choice>
+            <choice name="Electronic Match Eligible" description="Electronic Match Eligible">31</choice>
+        </set>
+        <set name="MatchEventStartIndicator" encodingType="int8">
+            <choice name="Last Trade" description="Not EoE/EoE">0</choice>
+            <choice name="Last Trade Volume" description="Not EoE/EoE">1</choice>
+            <choice name="Last Real Qoute" description="Not EoE/EoE">2</choice>
+            <choice name="Last Statistic" description="Not EoE/EoE">3</choice>
+            <choice name="Last Implied Qoute" description="Not EoE/EoE">4</choice>
+            <choice name="Reserved for Future Use" description="Reserved">5</choice>
+            <choice name="Reserved for Future Use" description="Reserved">6</choice>
+            <choice name="Reserved for Future Use" description="Reserved">7</choice>
+        </set>
+        <set name="SettlPriceType" encodingType="int8">
+            <choice name="NonRounded" description="Not EoE/EoE">0</choice>
+            <choice name="Actual" description="Not EoE/EoE">1</choice>
+            <choice name="Final" description="Not EoE/EoE">2</choice>
+            <choice name="Reserved for Future Use" description="Reserved">3</choice>
+            <choice name="Reserved for Future Use" description="Reserved">4</choice>
+            <choice name="Reserved for Future Use" description="Reserved">5</choice>
+            <choice name="Reserved for Future Use" description="Reserved">6</choice>
+            <choice name="Reserved for Future Use" description="Reserved">7</choice>
+        </set>
+    </types>
+    <sbe:message name="MDIncrementalRefreshReal" id="1" description="Test message" blockLength="14">
+        <field name="MsgType" id="35" type="MsgType" description="Message Type" offset="0" fixUsage="char"/>
+        <field name="TransactTime" id="60" type="uint64" description="Start of event processing time (UTC)" offset="0" fixUsage="int"/>
+        <field name="TimeBracket" id="943" type="int32" description="Event processing time." offset="8" fixUsage="int"/>
+        <field name="MatchEventStartIndicator" id="5799" type="MatchEventStartIndicator" description="EoE for type message" offset="12" fixUsage="MultipleCharValue"/>
+        <field name="MDEntries" id="268" type="NUM_IN_GROUP" description="NoMDEntries" offset="13" groupName="MDEntries" fixUsage="NumInGroup"/>
+        <group name="MDEntries" description="MD Entry Group" blockLength="27">
+            <field name="MDUpdateAction" id="279" type="MDUpdateAction" description="Update Action" offset="0" fixUsage="int"/>
+            <field name="MDEntryType" id="269" type="MDEntryType" description="Entry Type Enum" offset="1" fixUsage="char"/>
+            <field name="SecurityID" id="48" type="int32" description="Unique Instrument ID" offset="2" fixUsage="int"/>
+            <field name="RtpSeq" id="83" type="int32" description="Instrument Sequence" offset="6" fixUsage="int"/>
+            <field name="MDEntryPx" id="270" type="PRICE" description="Price of MD Entry" offset="10" fixUsage="Price"/>
+            <field name="MDEntrySize" id="271" type="int32" description="Quantity of MD Entry" offset="18" fixUsage="int"/>
+            <field name="NumberOfOrders" id="346" type="int32" description="Number of Orders at Price Level" offset="22" fixUsage="int"/>
+            <field name="MDPriceLevel" id="1023" type="int8" description="Price Level" offset="26" fixUsage="int"/>
+        </group>
+    </sbe:message>
+    <sbe:message name="MDIncrementalRefreshTrade" id="2" description="Test message" blockLength="14">
+        <field name="MsgType" id="35" type="MsgType" description="Message Type" offset="0" fixUsage="char"/>
+        <field name="TransactTime" id="60" type="uint64" description="Start of event processing time (UTC)" offset="0" fixUsage="int"/>
+        <field name="TimeBracket" id="943" type="int32" description="Event processing time." offset="8" fixUsage="int"/>
+        <field name="MatchEventStartIndicator" id="5799" type="MatchEventStartIndicator" description="EoE for type message" offset="12" fixUsage="MultipleCharValue"/>
+        <field name="MDEntries" id="268" type="NUM_IN_GROUP" description="NoMDEntries" offset="13" groupName="MDEntries" fixUsage="NumInGroup"/>
+        <group name="MDEntries" description="MD Entry Group" blockLength="30">
+            <field name="MDUpdateAction" id="279" type="MDUpdateAction" description="Update Action" offset="0" fixUsage="int"/>
+            <field name="MDEntryType" id="269" type="MDEntryTypeTrade" description="MDEntryType" offset="0" fixUsage="char"/>
+            <field name="SecurityID" id="48" type="int32" description="Unique Instrument ID" offset="1" fixUsage="int"/>
+            <field name="RtpSeq" id="83" type="int32" description="Instrument Sequence" offset="5" fixUsage="int"/>
+            <field name="MDEntryPx" id="270" type="PRICE" description="Price of MD Entry" offset="9" fixUsage="Price"/>
+            <field name="MDEntrySize" id="271" type="int32" description="Quantity of MD Entry" offset="17" fixUsage="int"/>
+            <field name="TradeID" id="1003" type="int32" description="Unique ID per Instrument and Trading Date" offset="21" fixUsage="int"/>
+            <field name="NumberOfOrders" id="346" type="int32" description="Number of Orders at Price Level" offset="25" fixUsage="int"/>
+            <field name="AggressorSide" id="5797" type="AggressorSide" description="Side that is the aggressor of a trade" offset="29" fixUsage="int"/>
+        </group>
+    </sbe:message>
+    <sbe:message name="MDIncrementalRefreshVolume" id="3" description="Test message" blockLength="14">
+        <field name="MsgType" id="35" type="MsgType" description="Message Type" offset="0" fixUsage="char"/>
+        <field name="TransactTime" id="60" type="uint64" description="Start of event processing time (UTC)" offset="0" fixUsage="int"/>
+        <field name="TimeBracket" id="943" type="int32" description="Event processing time." offset="8" fixUsage="int"/>
+        <field name="MatchEventStartIndicator" id="5799" type="MatchEventStartIndicator" description="EoE for type message" offset="12" fixUsage="MultipleCharValue"/>
+        <field name="MDEntries" id="268" type="NUM_IN_GROUP" description="NoMDEntries" offset="13" groupName="MDEntries" fixUsage="NumInGroup"/>
+        <group name="MDEntries" description="MD Entry Group" blockLength="13">
+            <field name="MDUpdateAction" id="279" type="MDUpdateAction" description="Update Action" offset="0" fixUsage="int"/>
+            <field name="MDEntryType" id="269" type="MDEntryTypeVol" description="MDEntryType" offset="0" fixUsage="char"/>
+            <field name="SecurityID" id="48" type="int32" description="Unique Instrument ID" offset="1" fixUsage="int"/>
+            <field name="RtpSeq" id="83" type="int32" description="Instrument Sequence" offset="5" fixUsage="int"/>
+            <field name="MDEntrySize" id="271" type="int32" description="Quantity of MD Entry" offset="9" fixUsage="int"/>
+        </group>
+    </sbe:message>
+    <sbe:message name="MDSecurityStatus" id="4" description="Test message" blockLength="29">
+        <field name="MsgType" id="35" type="MsgTypeStatus" description="Message Type" offset="0" fixUsage="char"/>
+        <field name="TimeBracket" id="60" type="uint64" description="Globex Event processing time" offset="0" fixUsage="int"/>
+        <field name="TradeDate" id="75" type="LOCAL_MKT_DATE" description="Indicates the date of trade session in YYYYMMDD" offset="8" fixUsage="LocalMktDate"/>
+        <field name="SecurityGroup" id="1151" type="SecurityGroup" description="if this tag is present 35=f message is sent for instrument group" offset="10" fixUsage="String"/>
+        <field name="Asset" id="6937" type="Asset" description="Product Code" offset="16" fixUsage="String"/>
+        <field name="SecurityID" id="48" type="int32" description="Unique Instrument ID" offset="22" fixUsage="int"/>
+        <field name="SecurityTradingStatus" id="326" type="SecurityTradingStatus" description="Security Trading Status" offset="77" fixUsage="int"/>
+        <field name="HaltReason" id="327" type="HaltReason" description="Halt Reason" offset="27" fixUsage="int"/>
+        <field name="SecurityTradingEvent" id="1174" type="SecurityTradingEvent" description="Security Trading Event" offset="28" fixUsage="int"/>
+    </sbe:message>
+    <sbe:message name="MDSnapshotRefresh" id="5" description="Test message" blockLength="14">
+        <field name="MsgType" id="35" type="MsgTypeSnapshot" description="Message Type" offset="0" fixUsage="char"/>
+        <field name="TransactTime" id="60" type="uint64" description="Start of event processing time (UTC)" offset="0" fixUsage="int"/>
+        <field name="TimeBracket" id="943" type="int32" description="Event processing time." offset="8" fixUsage="int"/>
+        <field name="MatchEventStartIndicator" id="5799" type="MatchEventStartIndicator" description="EoE for type message" offset="12" fixUsage="MultipleCharValue"/>
+        <field name="MDEntries" id="268" type="NUM_IN_GROUP" description="NoMDEntries" offset="13" groupName="MDEntries" fixUsage="NumInGroup"/>
+        <group name="MDEntries" description="MD Entry Group" blockLength="53">
+            <field name="MDEntryType" id="269" type="MDEntryType" description="Entry Type Enum" offset="1" fixUsage="char"/>
+            <field name="SecurityID" id="48" type="int32" description="Unique Instrument ID" offset="1" fixUsage="int"/>
+            <field name="RtpSeq" id="83" type="int32" description="Instrument Sequence" offset="5" fixUsage="int"/>
+            <field name="MDEntryPx" id="270" type="PRICE" description="Price of MD Entry" offset="9" fixUsage="Price"/>
+            <field name="MDEntrySize" id="271" type="int32" description="Quantity of MD Entry" offset="17" fixUsage="int"/>
+            <field name="NumberOfOrders" id="346" type="int32" description="Number of Orders at Price Level" offset="21" fixUsage="int"/>
+            <field name="MDPriceLevel" id="1023" type="int8" description="Price Level" offset="25" fixUsage="int"/>
+            <field name="OpenCloseSettlFlag" id="286" type="OpenCloseSettlFlag" description="Flag Enum" offset="26" fixUsage="int"/>
+            <field name="TradingReferenceDate" id="5691" type="LOCAL_MKT_DATE" description="Trading Date corresponding to Statistic Entry" offset="27" fixUsage="LocalMktDate"/>
+            <field name="HighLimitPrice" id="1149" type="PRICENULL" description="HighLimitPrice" offset="29" fixUsage="Price"/>
+            <field name="LowLimitPrice" id="1148" type="PRICENULL" description="LowLimitPrice" offset="37" fixUsage="Price"/>
+            <field name="MaxPriceVariation" id="1143" type="PRICENULL" description="MaxPriceVariation" offset="45" fixUsage="Price"/>
+        </group>
+    </sbe:message>
+    <sbe:message name="MDQouteRequest" id="6" description="Test message" blockLength="32">
+        <field name="MsgType" id="35" type="MsgTypeQouteRequest" description="Message Type" offset="0" fixUsage="char"/>
+        <field name="TransactTime" id="60" type="uint64" description="Start of event processing time (UTC)" offset="0" fixUsage="int"/>
+        <field name="QouteReqId" id="131" type="QouteReqId" description="Qoute request ID defined by the exchange" offset="8" fixUsage="String"/>
+        <field name="NoRelatedSym" id="146" type="NUM_IN_GROUP" description="NoRelatedSym" offset="31" groupName="NoRelatedSym" fixUsage="NumInGroup"/>
+        <group name="NoRelatedSym" description="NoRelatedSym Group" blockLength="34">
+            <field name="Symbol" id="55" type="Symbol" description="Repeating Symbols Specified" offset="0" fixUsage="String"/>
+            <field name="SecurityID" id="48" type="int32" description="Unique Instrument ID" offset="20" fixUsage="int"/>
+            <field name="QouteType" id="537" type="QouteType" description="QouteType Enum" offset="24" fixUsage="int"/>
+            <field name="MDEntryPx" id="38" type="PRICE" description="Price of MD Entry" offset="25" fixUsage="Price"/>
+            <field name="Side" id="54" type="Side" description="Side Enum" offset="33" fixUsage="int"/>
+        </group>
+    </sbe:message>
+    <sbe:message name="MDIncrementalRefreshStats" id="7" description="Test message" blockLength="14">
+        <field name="MsgType" id="35" type="MsgType" description="Message Type" offset="0" fixUsage="char"/>
+        <field name="TransactTime" id="60" type="uint64" description="Start of event processing time (UTC)" offset="0" fixUsage="int"/>
+        <field name="TimeBracket" id="943" type="int32" description="Event processing time." offset="8" fixUsage="int"/>
+        <field name="MatchEventStartIndicator" id="5799" type="MatchEventStartIndicator" description="EoE for type message" offset="12" fixUsage="MultipleCharValue"/>
+        <field name="MDEntries" id="268" type="NUM_IN_GROUP" description="NoMDEntries" offset="13" groupName="MDEntries" fixUsage="NumInGroup"/>
+        <group name="MDEntries" description="MD Entry Group" blockLength="49">
+            <field name="MDUpdateAction" id="279" type="MDUpdateAction" description="Update Action" offset="0" fixUsage="int"/>
+            <field name="MDEntryType" id="269" type="MDEntryType" description="Entry Type Enum" offset="1" fixUsage="char"/>
+            <field name="SecurityID" id="48" type="int32" description="Unique Instrument ID" offset="2" fixUsage="int"/>
+            <field name="RtpSeq" id="83" type="int32" description="Instrument Sequence" offset="6" fixUsage="int"/>
+            <field name="MDEntryPx" id="270" type="PRICENULL" description="Price of MD Entry" offset="10" fixUsage="Price"/>
+            <field name="MDEntrySize" id="271" type="int32NULL" description="Quantity of MD Entry" offset="18" fixUsage="int"/>
+            <field name="OpenCloseSettlFlag" id="286" type="OpenCloseSettlFlag" description="Flag Enum" offset="22" fixUsage="int"/>
+            <field name="TradingReferenceDate" id="5691" type="LOCAL_MKT_DATE" description="Trading Date corresponding to Statistic Entry" offset="23" fixUsage="LocalMktDate"/>
+            <field name="HighLimitPrice" id="1149" type="PRICENULL" description="HighLimitPrice" offset="25" fixUsage="Price"/>
+            <field name="LowLimitPrice" id="1148" type="PRICENULL" description="LowLimitPrice" offset="33" fixUsage="Price"/>
+            <field name="MaxPriceVariation" id="1143" type="PRICENULL" description="MaxPriceVariation" offset="41" fixUsage="Price"/>
+        </group>
+    </sbe:message>
+    <sbe:message name="MDIncrementalRefreshImplied" id="8" description="Test message" blockLength="14">
+        <field name="MsgType" id="35" type="MsgType" description="Message Type" offset="0" fixUsage="char"/>
+        <field name="TransactTime" id="60" type="uint64" description="Start of event processing time (UTC)" offset="0" fixUsage="int"/>
+        <field name="TimeBracket" id="943" type="int32" description="Event processing time." offset="8" fixUsage="int"/>
+        <field name="MatchEventStartIndicator" id="5799" type="MatchEventStartIndicator" description="EoE for type message" offset="12" fixUsage="MultipleCharValue"/>
+        <field name="MDEntries" id="268" type="NUM_IN_GROUP" description="NoMDEntries" offset="13" groupName="MDEntries" fixUsage="NumInGroup"/>
+        <group name="MDEntries" description="MD Entry Group" blockLength="23">
+            <field name="MDUpdateAction" id="279" type="MDUpdateAction" description="Update Action" offset="0" fixUsage="int"/>
+            <field name="MDEntryType" id="269" type="MDEntryType" description="Entry Type Enum" offset="1" fixUsage="char"/>
+            <field name="SecurityID" id="48" type="int32" description="Unique Instrument ID" offset="2" fixUsage="int"/>
+            <field name="RtpSeq" id="83" type="int32" description="Instrument Sequence" offset="6" fixUsage="int"/>
+            <field name="MDEntryPx" id="270" type="PRICE" description="Price of MD Entry" offset="10" fixUsage="Price"/>
+            <field name="MDEntrySize" id="271" type="int32" description="Quantity of MD Entry" offset="18" fixUsage="int"/>
+            <field name="MDPriceLevel" id="1023" type="int8" description="Price Level" offset="22" fixUsage="int"/>
+        </group>
+    </sbe:message>
+    <sbe:message name="MDInstrumentDefinition" id="9" description="Test message" blockLength="246">
+        <field name="MsgType" id="35" type="MsgTypeInstrument" description="Message Type" offset="0" fixUsage="char"/>
+        <field name="TotNumReports" id="911" type="uInt8" description="Number of reports in loop" offset="0" fixUsage="int"/>
+        <field name="SecurityUpdateAction" id="980" type="SecurityUpdateAction" description="New/Modified/Deleted" offset="1" fixUsage="char"/>
+        <field name="LastUpdateTime" id="779" type="uint64" description="Timestamp when instrument was last added, modified or deleted" offset="2" fixUsage="UTCTimestamp"/>
+        <field name="ApplID" id="1180" type="ApplID" description="Channel ID associated with this instrument" offset="10" fixUsage="String"/>
+        <field name="MarketSegmentID" id="1300" type="uInt8" description="Identifies market segment" offset="15" fixUsage="int"/>
+        <field name="Symbol" id="55" type="Symbol" description="Instrument name or symbol" offset="16" fixUsage="String"/>
+        <field name="SecurityID" id="48" type="int32" description="Unique Instrument ID" offset="36" fixUsage="int"/>
+        <field name="SecurityIDSource" id="22" type="SecurityIDSource" description="" offset="0" fixUsage="char"/>
+        <field name="MaturityMonthYear" id="200" type="LOCAL_MKT_DATE" description="Calendar date of contract maturity" offset="40" fixUsage="LocalMktDate"/>
+        <field name="SecurityGroup" id="1151" type="SecurityGroup" description="Security group code" offset="42" fixUsage="String"/>
+        <field name="Asset" id="6937" type="Asset" description="Underlying asset code" offset="48" fixUsage="String"/>
+        <field name="SecurityType" id="167" type="SecurityType" description="Security Type" offset="54" fixUsage="String"/>
+        <field name="CFICode" id="461" type="CFICode" description="ISO standard instrument categorization code" offset="60" fixUsage="String"/>
+        <field name="SecuritySubType" id="762" type="SecuritySubType" description="Strategy type" offset="66" fixUsage="String"/>
+        <field name="UserDefinedInstrument" id="9779" type="UserDefinedInstrument" description="UDS instrument" offset="71" fixUsage="char"/>
+        <field name="UnderlyingProdcut" id="462" type="UnderlyingProdcut" description="Product complex" offset="72" fixUsage="int"/>
+        <field name="SecurityExchange" id="207" type="SecurityExchange" description="Exchange used to identify a security" offset="73" fixUsage="String"/>
+        <field name="SecurityTradingStatus" id="326" type="SecurityTradingStatus" description="Security Trading Status" offset="77" fixUsage="int"/>
+        <field name="StrikePrice" id="202" type="PRICE" description="Strike price for an option" offset="78" fixUsage="Price"/>
+        <field name="StrikeCurrency" id="947" type="StrikeCurrency" description="Currency in which the strike price is denominated" offset="86" fixUsage="Currency"/>
+        <field name="Currency" id="15" type="StrikeCurrency" description="Identifies currency used for price" offset="89" fixUsage="Currency"/>
+        <field name="SettlCurrency" id="120" type="StrikeCurrency" description="Identifies currency used for settle price" offset="92" fixUsage="Currency"/>
+        <field name="MinCabPrice" id="9850" type="PRICE" description="Defines cabinet price for outright options products" offset="95" fixUsage="Price"/>
+        <field name="PriceRatio" id="5770" type="PRICE" description="Used for price calculation in spread and leg pricing" offset="103" fixUsage="float"/>
+        <field name="MatchAlgorithm" id="1142" type="MatchAlgorithm" description="Match Algorithm" offset="111" fixUsage="char"/>
+        <field name="MinTradeVol" id="562" type="int32" description="The minimum trading volume for a security" offset="112" fixUsage="Qty"/>
+        <field name="MaxTradeVol" id="1140" type="int32" description="The maximum trading volume for a security" offset="116" fixUsage="Qty"/>
+        <field name="MinPriceIncrement" id="969" type="PRICE" description="Minimum constant tick for the instrument" offset="120" fixUsage="float"/>
+        <field name="MinPriceIncrementAmount" id="1146" type="PRICE" description="Monetary value equivalent to the minimum price fluctuation" offset="128" fixUsage="Amt"/>
+        <field name="DisplayFactor" id="9787" type="PRICE" description="Contains the multiplier to convert the CME Globex display price to the conventional price" offset="136" fixUsage="float"/>
+        <field name="TickRule" id="6350" type="uInt8" description="TickRule" offset="144" fixUsage="int"/>
+        <field name="MainFraction" id="37702" type="uInt8" description="MainFraction" offset="145" fixUsage="int"/>
+        <field name="SubFraction" id="37703" type="uInt8" description="SubFraction" offset="146" fixUsage="int"/>
+        <field name="PriceDisplayFormat" id="9800" type="uInt8" description="PriceDisplayFormat" offset="147" fixUsage="int"/>
+        <field name="ContractMultiplierUnit" id="1435" type="uInt8" description="Contract Multiplier Unit" offset="148" fixUsage="int"/>
+        <field name="FlowScheduleType" id="1439" type="uInt8" description="FlowScheduleType" offset="149" fixUsage="int"/>
+        <field name="ContractMultiplier" id="231" type="uInt8" description="FlowScheduleType" offset="150" fixUsage="int"/>
+        <field name="UnitOfMeasure" id="996" type="UnitOfMeasure" description="Unit of Measure" offset="151" fixUsage="String"/>
+        <field name="UnitOfMeasureQty" id="1147" type="PRICE" description="UnitOfMeasureQty" offset="181" fixUsage="float"/>
+        <field name="DecayQty" id="5818" type="int32" description="DecayQty" offset="189" fixUsage="int"/>
+        <field name="DecayStartDate" id="5819" type="LOCAL_MKT_DATE" description="DecayStartDate" offset="193" fixUsage="LocalMktDate"/>
+        <field name="OriginalContractSize" id="5849" type="int32" description="OriginalContractSize" offset="195" fixUsage="int"/>
+        <field name="HighLimitPrice" id="1149" type="PRICE" description="HighLimitPrice" offset="199" fixUsage="Price"/>
+        <field name="LowLimitPrice" id="1148" type="PRICE" description="LowLimitPrice" offset="207" fixUsage="Price"/>
+        <field name="MaxPriceVariation" id="1143" type="PRICE" description="MaxPriceVariation" offset="215" fixUsage="Price"/>
+        <field name="TradingReferencePrice" id="1150" type="PRICE" description="TradingReferencePrice" offset="223" fixUsage="Price"/>
+        <field name="SettlPriceType" id="731" type="SettlPriceType" description="Type of reference price" offset="231" fixUsage="MultipleCharValue"/>
+        <field name="OpenInterestQty" id="5792" type="int32" description="OpenInterestQty" offset="232" fixUsage="int"/>
+        <field name="ClearedVolume" id="5791" type="int32" description="ClearedVolume" offset="236" fixUsage="int"/>
+        <field name="NoUnderlyings" id="711" type="NUM_IN_GROUP" description="Underlyings" offset="240" groupName="UnderlyingsGrp" fixUsage="NumInGroup"/>
+        <field name="NoLegs" id="555" type="NUM_IN_GROUP" description="Legs" offset="241" groupName="LegsGrp" fixUsage="NumInGroup"/>
+        <field name="NoMdFeedTypes" id="1141" type="NUM_IN_GROUP" description="MdFeedTypesGrp" offset="242" groupName="MdFeedTypesGrp" fixUsage="NumInGroup"/>
+        <field name="NoEvents" id="864" type="NUM_IN_GROUP" description="EventsGrp" offset="243" groupName="EventsGrp" fixUsage="NumInGroup"/>
+        <field name="NbInstAttrib" id="870" type="NUM_IN_GROUP" description="InstAttribGrp" offset="244" groupName="InstAttribGrp" fixUsage="NumInGroup"/>
+        <field name="NoLotTypeRules" id="1234" type="NUM_IN_GROUP" description="LotTypeRulesGrp" offset="245" groupName="LotTypeRulesGrp" fixUsage="NumInGroup"/>
+        <group name="UnderlyingsGrp" description="Underlying Group" blockLength="24">
+            <field name="UnderlyingSymbol" id="311" type="UnderlyingSymbol" description="Underlying Instrument Symbol" offset="0" fixUsage="String"/>
+            <field name="UnderlyingSecurityID" id="309" type="int32" description="Unique Instrument ID" offset="20" fixUsage="int"/>
+            <field name="UnderlyingSecurityIDSource" id="305" type="SecurityIDSource" description="Security ID Source" offset="0" fixUsage="char"/>
+        </group>
+        <group name="LegsGrp" description="LegsGrp" blockLength="22">
+            <field name="LegSecurityID" id="602" type="int32" description="Unique Instrument ID" offset="0" fixUsage="int"/>
+            <field name="LegSecurityIDSource" id="603" type="SecurityIDSource" description="Security ID Source" offset="0" fixUsage="char"/>
+            <field name="LegSide" id="624" type="LegSide" description="Leg Side" offset="4" fixUsage="char"/>
+            <field name="LegRatioQty" id="623" type="int8" description="Ratio of quantity for the leg" offset="5" fixUsage="int"/>
+            <field name="LegPrice" id="566" type="PRICE" description="Security ID Source" offset="6" fixUsage="Price"/>
+            <field name="LegOptionDelta" id="1017" type="PRICE" description="Security ID Source" offset="14" fixUsage="float"/>
+        </group>
+        <group name="MdFeedTypesGrp" description="FeedTypeGrp" blockLength="4">
+            <field name="MDFeedType" id="1022" type="MDFeedType" description="MDFeedType" offset="0" fixUsage="char"/>
+            <field name="MarketDepth" id="264" type="int8" description="MarketDepth" offset="3" fixUsage="int"/>
+        </group>
+        <group name="EventsGrp" description="EventsGrp" blockLength="9">
+            <field name="EventType" id="865" type="EventType" description="EventType" offset="0" fixUsage="int"/>
+            <field name="EventTime" id="1145" type="uint64" description="EventTime" offset="1" fixUsage="UTCTimestamp"/>
+        </group>
+        <group name="InstAttribGrp" description="InstAttribGrp" blockLength="5">
+            <field name="InstAttribType" id="871" type="int8" description="InstAttribType" offset="0" fixUsage="int"/>
+            <field name="InstAttribValue" id="872" type="InstAttribValue" description="InstAttribValue" offset="1" fixUsage="MultipleCharValue"/>
+        </group>
+        <group name="LotTypeRulesGrp" description="LotTypeRulesGrp" blockLength="9">
+            <field name="LotType" id="1093" type="char" description="LotType" offset="0" fixUsage="char"/>
+            <field name="MinLotSize" id="1231" type="uint64" description="MinLotSize" offset="1" fixUsage="int"/>
+        </group>
+    </sbe:message>
+</sbe:messageSchema>

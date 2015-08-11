@@ -1,0 +1,6 @@
+Java NIO introduces a layer of safety for concurrent access. This adds overhead.
+
+SubMicroTrading uses discrete threading models, and should be configured to guarentee thread safety at the session level.
+
+smtopt is a simple NIO replacement removing all thread safety and native buffer pooling and locking overhead compared to NIO lib
+

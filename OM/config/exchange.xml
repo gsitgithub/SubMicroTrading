@@ -1,0 +1,105 @@
+<Root>
+    <Exchanges>
+        <Exchange mic="XLON" timezone="Europe/London">
+            <HalfDays>24/12/2010,31/12/2010</HalfDays>
+            <OpenTime>07:50:00</OpenTime>
+            <CloseTime>17:00:00</CloseTime>
+            <HalfDayClose>13:00:00</HalfDayClose>
+            <Sessions expireTimeForSendEODEvents="17:00:00">
+                <Session>
+                    <OpenAuction  ref="OpenTime"  startOffset="+00:00:00" endOffset="+00:10:00"/>
+                    <CloseAuction ref="CloseTime" startOffset="-00:29:30" endOffset="-00:00:00"/>
+                </Session>
+                <Segments id="iobSegment" set="IOB,IOBE,IOBU,ITBB,ITBU">
+                    <OpenAuction  ref="OpenTime"  startOffset="+00:10:00" endOffset="+00:25:00"/>
+                    <CloseAuction ref="CloseTime" startOffset="-01:29:30" endOffset="-00:00:00"/>
+                </Segments>
+            </Sessions>
+        </Exchange>
+        
+        <Exchange mic="XCME" timezone="America/Chicago">
+            <OpenTime>08:00:00</OpenTime>
+            <CloseTime>16:30:30</CloseTime>
+            <Sessions expireTimeForSendEODEvents="17:00:00"/>
+        </Exchange>
+        
+        <Exchange mic="XBOM" timezone="IST">
+            <OpenTime>09:15:00</OpenTime>
+            <CloseTime>15:30:00</CloseTime>
+            <Sessions expireTimeForSendEODEvents="17:00:00"/>
+        </Exchange>
+        
+        <Exchange mic="XCHI" timezone="Europe/London">
+            <OpenTime>08:00:00</OpenTime>
+            <CloseTime>16:30:30</CloseTime>
+            <Sessions expireTimeForSendEODEvents="17:00:00"/>
+        </Exchange>
+        
+        <Exchange mic="BATE" timezone="Europe/London">
+            <OpenTime>08:00:00</OpenTime>
+            <CloseTime>16:30:00</CloseTime>
+            <Sessions expireTimeForSendEODEvents="17:00:00"/>
+        </Exchange>
+    
+        <Exchange mic="XEUR" timezone="CET">
+            <OpenTime>07:30:00</OpenTime>
+            <CloseTime>19:00:00</CloseTime>
+            <Sessions expireTimeForSendEODEvents="19:00:00">
+                <Session>
+                    <OpenAuction  ref="OpenTime"  startOffset="+00:00:00" endOffset="+00:30:00"/>
+                    <CloseAuction ref="CloseTime" startOffset="-00:10:00" endOffset="-00:00:00"/>
+                </Session>
+            </Sessions>
+        </Exchange>
+
+        <Exchange mic="XLIF" timezone="Europe/London">
+            <OpenTime>05:30:00</OpenTime>
+            <CloseTime>18:00:00</CloseTime>
+            <Sessions expireTimeForSendEODEvents="18:00:00"/>
+        </Exchange>
+
+        <Exchange mic="XPAR" timezone="CET">
+            <HalfDays>24/12/2010,31/12/2010</HalfDays>
+            <OpenTime>08:30:00</OpenTime>
+            <CloseTime>17:40:00</CloseTime>
+            <HalfDayClose>14:00:00</HalfDayClose>
+            <Sessions expireTimeForSendEODEvents="17:00:00">
+                <Session>
+                    <OpenAuction  ref="OpenTime"  startOffset="+00:00:00" endOffset="+00:30:00"/>
+                    <CloseAuction ref="CloseTime" startOffset="-00:10:00" endOffset="-00:00:00"/>
+                </Session>
+            </Sessions>
+        </Exchange>
+
+    <!--
+    
+        <Exchange mic="XBRU" timezone="CET">
+            <HalfDays>24/12/2010,31/12/2010</HalfDays>
+            <OpenTime>08:30:00</OpenTime>
+            <CloseTime>17:40:00</CloseTime>
+            <HalfDayClose>14:00:00</HalfDayClose>
+            <Sessions expireTimeForSendEODEvents="17:00:00">
+                <Session>
+                    <OpenAuction  ref="OpenTime"  startOffset="+00:00:00" endOffset="+00:30:00"/>
+                    <CloseAuction ref="CloseTime" startOffset="-00:10:00" endOffset="-00:00:00"/>
+                </Session>
+            </Sessions>
+        </Exchange>
+    
+        <Exchange mic="XLIS" timezone="Europe/Lisbon">
+            <HalfDays>24/12/2010,31/12/2010</HalfDays>
+            <OpenTime>07:30:00</OpenTime>
+            <CloseTime>16:40:00</CloseTime>
+            <HalfDayClose>14:00:00</HalfDayClose>
+            <Sessions expireTimeForSendEODEvents="17:00:00">
+                <Session>
+                    <OpenAuction  ref="OpenTime"  startOffset="+00:00:00" endOffset="+00:30:00"/>
+                    <CloseAuction ref="CloseTime" startOffset="-00:10:00" endOffset="-00:00:00"/>
+                </Session>
+            </Sessions>
+        </Exchange>
+    
+    -->
+    
+    </Exchanges>
+</Root>    

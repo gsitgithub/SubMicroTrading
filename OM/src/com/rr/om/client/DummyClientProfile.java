@@ -1,0 +1,66 @@
+/*******************************************************************************
+ * Copyright (c) 2015 Low Latency Trading Limited  :  Author Richard Rose
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at	http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing,  software distributed under the License 
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and limitations under the License.
+ *******************************************************************************/
+package com.rr.om.client;
+
+import com.rr.core.lang.ReusableString;
+import com.rr.core.model.ClientProfile;
+
+
+public class DummyClientProfile implements ClientProfile {
+
+    @Override public void postConstruction() { /* nothing */ }
+
+    @Override
+    public String getComponentId() {
+        return "DummyClientProfile";
+    }
+
+    @Override
+    public long getTotalOrderQty() {
+        return 0;
+    }
+
+    @Override
+    public double getTotalOrderValueUSD() {
+        return 0;
+    }
+
+    @Override
+    public long getTotalQty() {
+        return 0;
+    }
+
+    @Override
+    public double getMaxSingleOrderValueUSD() {
+        return 0;
+    }
+
+    @Override
+    public int getMaxSingleOrderQty() {
+        return 0;
+    }
+
+    @Override
+    public double getMaxTotalOrderValueUSD() {
+        return 0;
+    }
+
+    @Override
+    public long getMaxTotalQty() {
+        return 0;
+    }
+
+    @Override public void setThresholds( int lowThresholdPercent, int medThresholdPercent, int highThresholdPercent ) { /* nothing */ }
+    @Override public void setMaxTotalQty( long maxTotalQty ) { /* nothing */ }
+    @Override public void setMaxTotalOrderValueUSD( double maxTotalValueUSD ) { /* nothing */ }
+    @Override public void setMaxSingleOrderValueUSD( double maxSingleOrderValueUSD ) { /* nothing */    }
+    @Override public void setMaxSingleOrderQty( int maxSingleOrderQty ) { /* nothing */ }
+    @Override public void id( ReusableString out ) { /* nothing */    }
+
+}

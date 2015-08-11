@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/OM/test/com/rr/om/session/fixsocket/DumpFixByIndex.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.rr.om.session.fixsocket.DumpFixByIndex"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="persist/daily/SubMicroTrading/exchange1_down_out/out/exchange1_DOWN_OUT 1 100"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="OM"/>
+</launchConfiguration>

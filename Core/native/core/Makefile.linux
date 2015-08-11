@@ -1,0 +1,37 @@
+# g++: 3.2.3
+
+.SUFFIXES:        .c
+
+TMP_PATH=./target
+BIN_PATH=./bin/linux
+
+#DEBUG=            -g
+DEBUG=
+
+DLL_NAME=	libsubmicrocore.so
+
+CC=                      gcc
+CFLAGS=          -O3 -march=nocona -m64 -I"${JAVA_HOME}/include" -I"${JAVA_HOME}/include/linux" -DLINUX -fPIC -I${HWLOC_HOME}/include -I./sun
+LD=                      gcc
+LDFLAGS=-L${HWLOC_HOME}/lib -L${JAVA_HOME}/jre/lib/amd64 -L${JAVA_HOME}/jre/lib/amd64/server
+
+LIBS=-m64 -lhwloc -ljava -ljvm -lverify -lnio -lnet -lrt
+
+all:    setup lib 
+
+setup:
+	mkdir -p ${TMP_PATH}
+	mkdir -p ${BIN_PATH}
+
+lib: ${BIN_PATH}/${DLL_NAME}
+
+${BIN_PATH}/${DLL_NAME}: ${TMP_PATH}/SubMicroCore_jni.o 
+	${LD} ${LDFLAGS} -LD ${LIBS} -shared -o ${TMP_PATH}/${DLL_NAME} ${TMP_PATH}/SubMicroCore_jni.o 
+	cp -f ${TMP_PATH}/${DLL_NAME}  ${BIN_PATH}/${DLL_NAME}
+
+${TMP_PATH}/SubMicroCore_jni.o: src/SubMicroCore_jni.c src/SubMicroCore_jni.h
+	${CC} ${CFLAGS} -o ${TMP_PATH}/SubMicroCore_jni.o -c src/SubMicroCore_jni.c
+
+clean:
+	rm -rf ${TMP_PATH}/*
+	rm -rf ${BIN_PATH}/*

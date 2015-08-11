@@ -1,0 +1,6 @@
+# algoId | pipelineId | securityDescriptionList | parameter1 , ... , parameterN
+# parameters applied using reflection
+
+# using T1 data
+T1 | P1 | QCZ5,QCN7,QCZ5-QCN7 | tickToTradeRatio=15, trace=true
+

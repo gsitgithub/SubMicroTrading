@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="model/binary/version/1.0.0/src"/>
+	<classpathentry kind="src" path="model/codec-binary/version/1.0.0/src"/>
+	<classpathentry kind="src" path="model/codec-factory/version/1.0.0/src"/>
+	<classpathentry kind="src" path="model/codec-exchange/version/1.0.0/src"/>
+	<classpathentry kind="src" path="model/codec-client/version/1.0.0/src"/>
+	<classpathentry kind="src" path="model/fix/version/1.0.0/src"/>
+	<classpathentry kind="src" path="model/codec-base/version/1.0.0/src"/>
+	<classpathentry kind="src" path="model/internal/version/1.0.0/src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Core"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
