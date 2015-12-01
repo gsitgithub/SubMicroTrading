@@ -1,4 +1,4 @@
-My name is Richard Rose and I am the author of the SubMicroTrading framework. 
+Richard Rose author of the SubMicroTrading framework. 
 
 SubMicroTrading is a highly concurrent component based algo trading framework almost 5 years in the making that I am preparing for open source with a target date August 2015. Includes components for various market data and trading sessions including ETI, UTP, Millenium, Fix, FastFix, CME MDP.  
 
