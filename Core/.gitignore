@@ -2,7 +2,10 @@
 .classpath
 .project
 .settings/
-
+.gradle
+.github
+.idea
+build/
 # Output directory
 bin/
 
